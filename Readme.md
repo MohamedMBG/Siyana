@@ -255,6 +255,8 @@ Les résultats de tests et les performances seront publiés après mesure. Ce do
 
 ## Documentation prévue
 
+Le [planning complet sur 14 semaines](docs/Planning_GMAO_PME_14_Semaines.md) détaille les tâches, l'architecture et les critères de validation du projet.
+
 | Document | Contenu |
 |---|---|
 | Cahier des charges | Acteurs, besoins, périmètre, règles et critères de recette |
