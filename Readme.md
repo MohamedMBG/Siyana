@@ -91,6 +91,8 @@ stateDiagram-v2
     Planifie --> EnCours : démarrage
     EnCours --> AttentePiece : pièce indisponible
     AttentePiece --> EnCours : reprise
+    EnCours --> Annule : interruption décidée (travaux conservés)
+    AttentePiece --> Annule : interruption décidée (travaux conservés)
     EnCours --> Termine : rapport soumis
     Termine --> EnCours : retour pour correction
     Termine --> Cloture : validation du responsable
@@ -211,16 +213,17 @@ La procédure finale devra couvrir la configuration d'environnement, le démarra
 
 ## Feuille de route
 
-Le calendrier de référence couvre **14 semaines**. L'hypothèse de charge est de deux développeurs, chacun avec 24 h de travail planifié et 6 h de réserve par semaine. Les dates seront adaptées au calendrier officiel du PFA.
+Le calendrier de référence couvre **14 semaines**, organisées en **7 sprints de 2 semaines**. L'hypothèse de charge est de deux développeurs, chacun avec 24 h de travail planifié et 6 h de réserve par semaine. Les dates seront adaptées au calendrier officiel du PFA.
 
-| Période | Travail prévu | Jalon |
-|---|---|---|
-| **S1–S2** | Étude de l'existant, entretiens, besoins, règles métier et critères de recette | Cahier des charges prêt à validation |
-| **S3–S4** | Modélisation, maquettes, socle technique et prototype de synchronisation | Preuve de persistance et de reprise hors ligne |
-| **S5–S7** | Équipements, DI/OT, affectation, premiers plans préventifs et stock | Démonstration web intégrée |
-| **S8–S10** | Compteurs, exécution mobile, photos, reprise réseau et conflits | Démonstration hors ligne complète |
-| **S11–S12** | Indicateurs, coûts, IA, recette, déploiement et restauration | Version fonctionnelle complète |
-| **S13–S14** | Stabilisation, documentation, rapport et répétitions | Livraison et soutenance |
+| Sprint | Semaines | Travail prévu | Porte |
+|---|---|---|---|
+| **1** | S1–S2 | Étude de l'existant, entretiens, besoins, règles métier, critères de recette et préparation du dépôt | G1 : cahier des charges validé et backlog estimé |
+| **2** | S3–S4 | Socle technique, CI et première tranche de synchronisation | G2 : preuve de persistance et de reprise hors ligne |
+| **3** | S5–S6 | Équipements, DI/OT, affectation, rapport local et premier plan préventif | G3 : parcours correctif de bout en bout |
+| **4** | S7–S8 | Stock, préventif par compteur, file d'envoi mobile et web intégré | G4 : démonstration web intégrée |
+| **5** | S9–S10 | Photos, conflits, retraits d'accès, sécurité et recette sur appareil réel | G5 : démonstration hors ligne complète |
+| **6** | S11–S12 | Indicateurs, coûts, IA, recette, déploiement et restauration | G6 : version fonctionnelle complète |
+| **7** | S13–S14 | Stabilisation, documentation, rapport et répétitions | G7 : livraison et soutenance |
 
 Les notifications push, iOS, Metabase, l'IoT et la gestion de plusieurs entreprises clientes constituent des évolutions possibles après la couverture du périmètre initial.
 
@@ -255,7 +258,7 @@ Les résultats de tests et les performances seront publiés après mesure. Ce do
 
 ## Documentation prévue
 
-Le [planning complet sur 14 semaines](docs/Planning_GMAO_PME_14_Semaines.md) détaille les tâches, l'architecture et les critères de validation du projet.
+Le [planning complet sur 14 semaines](docs/Planning_GMAO_PME_14_Semaines.md) détaille les sprints, les tâches, l'architecture et les critères de validation du projet. Les règles de travail des développeurs et des agents IA sont dans [AGENTS.md](AGENTS.md) ; les décisions sont consignées dans le [registre des décisions](docs/decisions.md).
 
 | Document | Contenu |
 |---|---|
@@ -283,12 +286,14 @@ Le [planning complet sur 14 semaines](docs/Planning_GMAO_PME_14_Semaines.md) dé
 
 ## Contribution
 
+Les règles détaillées (conformité au CDC, dette technique zéro, conventions de commit, revue croisée, usage des agents IA) sont dans [AGENTS.md](AGENTS.md) et s'appliquent à tous les contributeurs. Sur chaque poste, activer les contrôles de commit avec `git config core.hooksPath .githooks`.
+
 Pour proposer une évolution :
 
-1. Décrire le besoin et son critère d'acceptation dans un ticket.
+1. Décrire le besoin et son critère d'acceptation dans un ticket rattaché à un identifiant du CDC.
 2. Créer une branche dédiée et limiter la modification à ce besoin.
-3. Ajouter les vérifications pertinentes et mettre à jour la documentation concernée.
-4. Ouvrir une pull request pour revue avant intégration.
+3. Ajouter les tests et mettre à jour la documentation concernée, sans laisser de dette connue.
+4. Ouvrir une pull request relue et approuvée par l'autre développeur avant intégration.
 
 Toute modification du protocole de synchronisation doit préciser son effet sur les opérations en attente et les données locales existantes. Ne jamais versionner de secrets, de données personnelles réelles ou de documents industriels confidentiels.
 
