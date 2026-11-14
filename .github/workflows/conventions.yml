@@ -1,0 +1,28 @@
+name: conventions
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  conventions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Tracked files
+        run: bash scripts/check-conventions.sh files
+      - name: Commit messages
+        run: bash scripts/check-conventions.sh range "origin/${{ github.base_ref }}..HEAD"
+      - name: PR title and description
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          printf '%s\n' "$PR_TITLE" | bash scripts/check-conventions.sh title
+          printf '%s\n' "$PR_BODY" | bash scripts/check-conventions.sh text "PR description"

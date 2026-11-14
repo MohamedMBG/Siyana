@@ -1,0 +1,31 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.jks
+*.keystore
+key.properties
+local.properties
+secrets/
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+
+# Build outputs and dependencies
+backend/target/
+web/node_modules/
+web/dist/
+mobile/build/
+mobile/.dart_tool/
+analytics/.venv/
+__pycache__/
+*.pyc
+
+# Runtime data
+infra/data/
+*.log
