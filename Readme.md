@@ -182,13 +182,13 @@ Un score d'anomalie est une aide à l'analyse : il n'est pas présenté comme un
 
 ## Organisation du dépôt
 
-Organisation cible, à mettre en place pendant le développement :
+Les trois applications partagent ce dépôt Git. Leurs dossiers sont réservés dès maintenant, sans code applicatif initialisé. Le reste du tableau décrit l’organisation cible :
 
 | Chemin | Contenu prévu |
 |---|---|
-| `backend/` | API REST, règles métier, sécurité, synchronisation et migrations |
-| `web/` | Back-office React et tableaux de bord |
-| `mobile/` | Application Flutter et persistance SQLite |
+| [`backend/`](backend/) | API REST Spring Boot, règles métier, sécurité, synchronisation et migrations |
+| [`backoffice/`](backoffice/) | Back-office React et tableaux de bord |
+| [`mobile/`](mobile/) | Application Flutter et persistance SQLite |
 | `analytics/` | Génération des données, variables, modèle et évaluation |
 | `docs/` | Cahier des charges, conception, protocole de synchronisation et guides |
 | `infra/` | Configuration Docker et déploiement |
