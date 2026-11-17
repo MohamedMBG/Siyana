@@ -370,7 +370,7 @@ Les flux du job IA utilisent une identité technique limitée : lecture des vari
 
 ### Organisation du code
 
-Un dépôt commun contient `backend/`, `web/`, `mobile/`, `analytics/`, `docs/` et `infra/`. Le backend est organisé par modules `identity`, `assets`, `workorders`, `preventive`, `inventory`, `sync` et `reporting`. Dans chaque module, conserver contrôleurs, services et accès aux données nécessaires, sans imposer une couche abstraite supplémentaire à chaque classe.
+Un dépôt commun contient `backend/`, `backoffice/`, `mobile/`, `analytics/`, `docs/` et `infra/`. Le backend est organisé par modules `identity`, `assets`, `workorders`, `preventive`, `inventory`, `sync` et `reporting`. Dans chaque module, conserver contrôleurs, services et accès aux données nécessaires, sans imposer une couche abstraite supplémentaire à chaque classe.
 
 Prévoir les fichiers `README.md`, `docs/cdc.md`, `docs/data-dictionary.md`, `docs/sync-protocol.md`, `docs/decisions.md`, `docs/test-plan.md` et `docs/deployment.md`. Les diagrammes peuvent être conservés en Mermaid ou PlantUML pour rester modifiables.
 
